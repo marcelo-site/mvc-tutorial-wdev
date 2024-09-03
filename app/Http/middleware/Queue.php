@@ -11,9 +11,8 @@ class Queue
    * Mapeamento dos midlewares
    * var array
    */
-  private static $map = [];
-
   private static $default = [];
+  private static $map = [];
 
   /**
    * Fila de middlewres a serem executados
@@ -35,16 +34,6 @@ class Queue
     $this->controllerArgs = $controllerArgs;
   }
 
-  public static function setMap($map)
-  {
-    self::$map = $map;
-  }
-
-  public static function setDefault($default)
-  {
-    self::$default = $default;
-  }
-
   public function next($request)
   {
     if (empty($this->middlewares)) {
@@ -52,7 +41,6 @@ class Queue
     }
 
     $middleware = array_shift($this->middlewares);
-
     if (!isset(self::$map[$middleware])) {
       throw new \Exception("Problemas ao processar $middleware", 500);
     }
@@ -64,5 +52,15 @@ class Queue
     };
 
     return (new self::$map[$middleware])->handle($request, $next);
+  }
+
+  public static function setMap($map)
+  {
+    self::$map = $map;
+  }
+
+  public static function setDefault($default)
+  {
+    self::$default = $default;
   }
 }

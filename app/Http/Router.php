@@ -113,13 +113,11 @@ class Router
         $args[$name] = is_array($route['variables'][$name]) ? $route['variables'][$name][0] : $route['variables'][$name] ?? "";
       }
 
-      //Fila de middlewares
+      // Fila de middlewares
       $middlewareQueue = new MiddlewareQueue($route['middlewares'], $route['controller'], $args);
+
+
       return $middlewareQueue->next($this->request);
-
-
-
-      // return call_user_func_array($route['controller'], $args);
     } catch (Exception $e) {
       return new Response($e->getCode(), $e->getMessage());
     }
@@ -128,5 +126,13 @@ class Router
   public function getCurrentUrl()
   {
     return $this->url . $this->getUri();
+  }
+
+  public function redirect($route)
+  {
+    $url = $this->url . $route;
+
+    header('Location: ' . $url);
+    exit;
   }
 }
