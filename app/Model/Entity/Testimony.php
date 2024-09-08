@@ -11,7 +11,7 @@ class Testimony
   public $mensagem;
   public $data;
 
-  public static function getTestimonys(
+  public static function getTestimonies(
     $where = null,
     $order = null,
     $limit = null,
@@ -29,5 +29,24 @@ class Testimony
       "mensagem" => $this->mensagem,
       "data" => $this->data
     ]);
+  }
+
+  public static function getTestimonyById($id)
+  {
+    return self::getTestimonies('id = ' . $id)->fetchObject(self::class);
+  }
+
+
+  public function atualizar()
+  {
+    return (new Database("depoimentos"))->update('id = ' . $this->id, [
+      "nome" => $this->nome,
+      "mensagem" => $this->mensagem
+    ]);
+  }
+
+  public function excluir()
+  {
+    return (new Database('depoimentos'))->delete('id = ' . $this->id);
   }
 }

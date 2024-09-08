@@ -12,6 +12,10 @@ class ComposerStaticInit551ae0373b091501cd083dd0d422f48e
             'WilliamCosta\\DotEnv\\' => 20,
             'WilliamCosta\\DatabaseManager\\' => 29,
         ),
+        'F' => 
+        array (
+            'Firebase\\JWT\\' => 13,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -26,6 +30,10 @@ class ComposerStaticInit551ae0373b091501cd083dd0d422f48e
         'WilliamCosta\\DatabaseManager\\' => 
         array (
             0 => __DIR__ . '/..' . '/william-costa/database-manager/src',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'App\\' => 
         array (

@@ -8,12 +8,6 @@ class RequireAdminLogout
 {
   public function handle($request, $next)
   {
-    // echo '<pre>';
-    // print_r(!SessionAdminLogin::isLogged());
-    // echo '</pre>';
-    // exit;
-
-
     if (SessionAdminLogin::isLogged()) {
       $request->getRouter()->redirect('/admin');
     }

@@ -13,7 +13,7 @@ class Testimony extends Page
   {
     $itens = '';
 
-    $total = EntityTestimony::getTestimonys(null, null, null, "COUNT(*) as qtd")->fetchObject()->qtd;
+    $total = EntityTestimony::getTestimonies(null, null, null, "COUNT(*) as qtd")->fetchObject()->qtd;
 
     $queryParams = $request->getQueryParams();
 
@@ -23,7 +23,7 @@ class Testimony extends Page
 
     $limit = $obPagination->getLimit();
 
-    $results = EntityTestimony::getTestimonys(null, 'id DESC', $limit);
+    $results = EntityTestimony::getTestimonies(null, 'id DESC', $limit);
 
     while ($testimonyItem = $results->fetchObject(EntityTestimony::class)) {
       $content = View::render('pages/testimonys/item', [

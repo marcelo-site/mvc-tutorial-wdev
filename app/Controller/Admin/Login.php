@@ -5,14 +5,13 @@ namespace App\Controller\Admin;
 use App\Utils\View;
 use App\Model\Entity\User;
 use App\Session\Admin\Login as SessionAdminLogin;
+use App\Controller\Admin\Alert;
 
 class Login extends Page
 {
   public static function getLogin($request, $errorMessage = null)
   {
-    $status = !is_null($errorMessage) ? View::render('admin/login/status', [
-      'mensagem' => $errorMessage
-    ]) : '';
+    $status = !is_null($errorMessage) ? Alert::getError($errorMessage) : '';
 
     $content = View::render('admin/login', [
       'status' => $status
@@ -34,14 +33,12 @@ class Login extends Page
     }
 
     if (!password_verify($senha, $obUser->senha)) {
-      return self::getLogin($request, 'E-mail ou senha inválidos');
+      return self::getLogin($request, 'E-mail ou senha inválidos1');
     }
 
     SessionAdminLogin::login($obUser);
 
     $request->getRouter()->redirect("/admin");
-
-    // return $next($request);
   }
 
   public static function setLogout($request)

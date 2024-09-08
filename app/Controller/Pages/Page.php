@@ -6,11 +6,11 @@ use \App\Utils\View;
 
 class Page
 {
-  private static function getHeader()
+  private function getHeader()
   {
     return View::render('pages/header');
   }
-  private static function getFooter()
+  private function getFooter()
   {
     return View::render('pages/footer');
   }

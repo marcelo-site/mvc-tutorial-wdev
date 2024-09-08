@@ -1,40 +1,12 @@
 <?php
 
-use \App\Http\Response;
-use \App\Controller\Admin;
+include_once __DIR__ . str_replace('/', DIRECTORY_SEPARATOR, '/admin/home.php');
 
-$app->get("/admin", [
-  'middlewares' => [
-    'required-admin-login'
-  ],
-  function () {
-    return new Response(200, "Admin :)");
-  }
-]);
+include_once __DIR__ .
+  str_replace('/', DIRECTORY_SEPARATOR, '/admin/login.php');
 
-$app->get("/admin/login", [
-  'middlewares' => [
-    'required-admin-lougout'
-  ],
-  function ($request) {
-    return new Response(200, Admin\Login::getLogin($request));
-  }
-]);
+include_once __DIR__ .
+  str_replace('/', DIRECTORY_SEPARATOR, '/admin/testimonies.php');
 
-$app->post("/admin/login", [
-  'middlewares' => [
-    'required-admin-lougout'
-  ],
-  function ($request) {
-    return new Response(200, Admin\Login::setLogin($request));
-  }
-]);
-
-$app->get("/admin/logout", [
-  'middlewares' => [
-    'required-admin-login'
-  ],
-  function ($request) {
-    return new Response(200, Admin\Login::setLogout($request));
-  }
-]);
+include_once __DIR__ .
+  str_replace('/', DIRECTORY_SEPARATOR, '/admin/users.php');
